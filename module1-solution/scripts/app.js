@@ -11,7 +11,7 @@ function LunchCheckController($scope) {
 	$scope.messageColor = "#ccc";
 
 	$scope.check = function () {
-		if ($scope.dishes === "") {
+		if ($scope.dishes === undefined || $scope.dishes === "") {
 			$scope.message = "Please enter data first!";
 			$scope.messageColor = "red";
 			return;
@@ -23,6 +23,11 @@ function LunchCheckController($scope) {
 			if (dishData[idx].trim()) {
 				numberOfDishes += 1;
 			}
+		}
+		if (numberOfDishes === 0) {
+			$scope.message = "Your input is invalid!";
+			$scope.messageColor = "red";
+			return;
 		}
 		$scope.messageColor = "green";
 		$scope.message = numberOfDishes <= 3 ? "Enjoy!" : "Too much!";

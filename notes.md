@@ -64,3 +64,8 @@ DI in Angular needs to be minification proof.
 
 - Inline array with function as last element
 - Attach $inject property to the function object
+
+### week1 assignment
+这是一个悲伤的故事。我只得了80分。完完全全体现出了我的草率和无知以及没有耐心。
+
+我应该多做测试的，不应该因为一点小小的成绩就沾沾自喜。这是很不好的。And be patient.
