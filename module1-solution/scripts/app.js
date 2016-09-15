@@ -11,7 +11,7 @@ function LunchCheckController($scope) {
 	$scope.messageColor = "#ccc";
 
 	$scope.check = function () {
-		if ($scope.dishes === "") {
+		if ($scope.dishes === undefined || $scope.dishes === "") {
 			$scope.message = "Please enter data first!";
 			$scope.messageColor = "red";
 			return;
