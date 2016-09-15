@@ -51,3 +51,16 @@ Representation of the state of the view
 Declaratively binds the model of the ViewModel to the view.
 
 The framework does this magic.
+
+### Custom HTML Attributes
+Angular正是利用定制的HTML属性实现了那些绑定。详见例子。
+
+### Dependency Injection
+Design pattern that implements Inversion of Control.
+
+DI in Angular needs to be minification proof.
+
+2 methods:
+
+- Inline array with function as last element
+- Attach $inject property to the function object

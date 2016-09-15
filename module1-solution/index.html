@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app="LunchCheck">
+  <head>
+    <title>Lunch Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .message { font-size: 1.3em; font-weight: bold; }
+    </style>
+  </head>
+<body>
+   <div class="container">
+     <h1>Lunch Checker</h1>
+     <form role="form" name="lunch-check-form" ng-controller="LunchCheckController">
+         <div class="form-group">
+             <input style="border:1px solid {{messageColor}}" id="lunch-menu" type="text"
+             placeholder="list comma separated dishes you usually have for lunch"
+             class="form-control" ng-model="dishes" required>
+         </div>
+         <div class="form-group">
+             <button class="btn btn-default" ng-click="check();">Check If Too Much</button>
+         </div>
+         <div class="alert alert-warning alert-dismissible" role="alert">
+             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             An empty item, i.e., , , is <strong>NOT</strong> considered as an item towards to the count.
+         </div>
+         <div class="form-group message" style="color:{{messageColor}}">
+           {{message}}
+         </div>
+     </form> 
+   </div>
+  
+  <script src="scripts/jquery-3.1.0.min.js"></script>
+  <script src="scripts/bootstrap.min.js"></script>
+  <script src="scripts/angular.min.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
