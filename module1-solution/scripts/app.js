@@ -24,6 +24,11 @@ function LunchCheckController($scope) {
 				numberOfDishes += 1;
 			}
 		}
+		if (numberOfDishes === 0) {
+			$scope.message = "Your input is invalid!";
+			$scope.messageColor = "red";
+			return;
+		}
 		$scope.messageColor = "green";
 		$scope.message = numberOfDishes <= 3 ? "Enjoy!" : "Too much!";
 	};
