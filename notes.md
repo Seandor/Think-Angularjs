@@ -69,3 +69,67 @@ DI in Angular needs to be minification proof.
 这是一个悲伤的故事。我只得了80分。完完全全体现出了我的草率和无知以及没有耐心。
 
 我应该多做测试的，不应该因为一点小小的成绩就沾沾自喜。这是很不好的。And be patient.
+
+### Custom Filters
+Steps to create custom filters:
+Step 1: Define filter factory function.
+
+```
+function customFilterFactory() {
+    return function (input) {
+        // change input
+        return changesInput;
+    }
+}
+```
+
+Step 2: Register filter factory with module
+
+```
+angular.module('app', [])
+.controller('Ctrl', Ctrl)
+.filter('custom', customFilterFactory);
+```
+
+Step 3: Inject it with nameFilter
+
+```
+Ctrl.$inject = ['$scope', 'customFilter'];
+function Ctrl($scope, customFilter) {
+    var msg = "Some input";
+    customFilter(msg);
+}
+```
+
+### Digest Cycle
+Running digest loops until all watchers report that nothing has changed.
+
+Dirty checking: if one property in the watchers has changed, the digest loop will be fired twice, one is to check which property is changed, the other is to make sure nothing is changed(Because sometimes one property change may cause another property change). 
+
+Several ways to set up watchers:
+
+- `$scope.$watch` - don't do this in a controller
+- `{{ someProperty }}`
+- `<input ...ng-model="someProperty">`
+
+Digest Cycle does not get triggered automatically if events are unaware of Angular. Solution:
+
+- call `$digest` after your custom code
+- wrap your custom code inside of `$apply`
+- find angular specific service that handles the same functionality. e.g. `$timeout`.
+
+Minimizing the number of live active watchers in watchers list during the digest loop is desirable. There comes with one-time binding.
+
+### 2-way, 1-way, and 1-time binding.
+2-way binding(ng-model) means:
+
+- Listener for change on input automatically set up by Angular updates property value on $scope
+- Direct update to property value is automatically updated in UI
+
+1-way binding({{property}}) means:
+
+- Direct update to property value is automatically updated in UI
+
+1-time binding({{::property}}) means:
+
+- initialized value of property is automatically updated in UI
