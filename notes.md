@@ -133,3 +133,45 @@ Minimizing the number of live active watchers in watchers list during the digest
 1-time binding({{::property}}) means:
 
 - initialized value of property is automatically updated in UI
+
+### ng-repeat
+- `ng-repeat="item in collection"`, where can now be used in interpolation as an item in the collection at particular index of interation.
+- ng-repeat exposes a special $index property to the body of its host tag
+    - Holds the numeric index of the current item in the loop
+
+#### Filtered ng-repeat
+- Array has a special function called filter
+    - create new array where each item satisfies some condition of the comparison function passed into the function.
+- Angular has a special (built-in) filter called 'filter'
+    - Provided a string as 1st argument, it will filter array it's applied to, matching all string items against provided one
+- `ng-repeat="item in collection | filter : searchString"`
+
+### Controller As Syntax
+
+- `$scope` is based on prototypal inheritance. (Child controller's `$scope` inherits from parent controller's `$scope`)
+- Controller As syntax is `ControllerName as label`
+- Angular creates property 'label' on the `$scope`
+    - The label is reference to 'this', i.e., instance of Controller
+    - Works because controller treats it as a function constructor, (So `this` will bind to the instance of controllor once the controller being created)
+- Attach properties to 'this' inside of Controller, not `$scope`, it's easier syntax in HTML and JS without masking occurs.
+
+### Singleton Design Pattern
+Restricts object to always having a single instance.
+
+- Each dependent component gets a reference to the same instance
+- Multiple controllers injected with a Service will have access to the same service instance, that enables us to share data between different controllers or other components within our application.
+
+### Lazy Instantiation
+Only created if an application component declares it as a dependency. If no components in your application are dependent ont this service, it will never get created.
+
+### Custom Service
+Custom services instantiated with .service method.
+- Singletons (only 1 instance of object exists)
+- lazily instantiated (only created if something depends on them)
+- .servce('name', function), treats function as a function constructor
+
+### Factory Design Pattern
+Central place that produces new objects or functions
+
+- can produce any type of object, not just a singleton
+- can be used to produce dynamically customizable services
