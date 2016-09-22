@@ -14,7 +14,6 @@ function ToBuyShoppingController(ShoppingListCheckOffService) {
 	
 	toBuyList.buyItem = function (itemIndex) {
 		ShoppingListCheckOffService.buyItem(itemIndex);
-		toBuyList.isEmpty = ShoppingListCheckOffService.isToBuyItemsEmpty();
 	}
 	
 }
