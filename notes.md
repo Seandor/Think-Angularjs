@@ -175,3 +175,18 @@ Central place that produces new objects or functions
 
 - can produce any type of object, not just a singleton
 - can be used to produce dynamically customizable services
+
+### Custom Directive
+Directive is a marker in HTML that Angular compiles into some behavior.
+
+- Register name of directive using camelCase
+- Registered factory function must return a DDO
+- With custom directives, out HTML coding becomes reusable and semantically relevant to the actual web app we're building.
+
+### DDO(Directive Definition Object)
+The DDO's restrict property determines what AngularJS compiler should look for to detect your custom directive.
+
+Best Practice: Use 'E' for element when directive has content along with possible behavior.
+Best Practice: Use 'A' for attribute when directive has no content and only extends the behavior of host element.
+
+Class and comment directives are possible, but not Used.
