@@ -8,6 +8,9 @@ input[type="text"] {
 .narrow-button {
   margin-left: 10px;
 }
+.error {
+  color: red;
+}
 .loader {
   display: none;
   margin-left: 5px;

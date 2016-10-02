@@ -3,4 +3,5 @@
     {{ item.name }}
     <button class="btn btn-warning btn-xs" ng-click="found.onRemove({index: $index});">Remove Item</button>
   </li>
+  <div ng-if="found.errorMessage" class="error">{{found.errorMessage}}</div>
 </ul>
