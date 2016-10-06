@@ -190,3 +190,20 @@ Best Practice: Use 'E' for element when directive has content along with possibl
 Best Practice: Use 'A' for attribute when directive has no content and only extends the behavior of host element.
 
 Class and comment directives are possible, but not Used.
+
+### Promise
+Object which can be passed around or returned that holds references to the outcome of asynchronous behavior.
+
+### Some rules about custom directive
+
+- If we don't specify directive scope, the scope of our directive will be the same scope of the containing controller.
+- custom directive can make html code more semantic. Like this:
+```
+<list-item ng-repeat="item in list.items"></list-item>
+```
+- In isolate scope, `=` means bidirectional binding. It is like function parameters, the property name after the equal sign is the parameter name, you should use this name as an attribute to deliver variable from its parent scope.
+- using an `@` sign bings the value of the DOM attribute to the value of the isolate scope. And the value is always a string. And it is a one way binding, the DOM attribute string value to the inside directive property, the property inside directive changes won't affect the outer DOM attribute value.
+- It's best practice trying to avoid changing the values inside the directive, use `<` for one-way bingding, it watches only the identity of the parent property, not the property inside directive. It's kind of like passing by value (one-way binding) and passing by reference (two-way binding).
+
+### Components
+Components only control their own view and data, it never modify data or DOM outside their own scope(Modifying creates side-effects that lead to chaos). Therefore, Angular components always use isolate scope.
