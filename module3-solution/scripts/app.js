@@ -3,11 +3,28 @@
 
 angular.module("NarrowItDownApp", [])
 .controller("NarrowItDownController", NarrowItDownController)
-.directive("foundItems", FoundItems)
+.directive("foundItems", FoundItemsDirective)
 .service("MenuSearchService", MenuSearchService)
-.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
+.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
+.component('itemsLoaderIndicator', {
+	templateUrl: 'views/itemsloaderindicator.template.html',
+	controller: ItemsLoaderController
+});
 
-function FoundItems() {
+ItemsLoaderController.$inject = ['$rootScope'];
+function ItemsLoaderController($rootScope) {
+  var $ctrl = this;
+  var cancelListener = $rootScope.$on('itemsearching:processing', function (event, data) {
+    if (data.on) {
+      $ctrl.showLoader = true;
+    }
+    else {
+      $ctrl.showLoader = false;
+    }
+  })
+}
+
+function FoundItemsDirective() {
   var ddo = {
     templateUrl: "views/foundItems.html",
     scope: {
@@ -24,19 +41,25 @@ function FoundItems() {
 }
 
 function FoundItemsDerectiveController() {
+  var found = this;
 
+  found.remove = function (myIndex) {
+    found.onRemove({index: myIndex});
+  }
 }
 
-NarrowItDownController.$inject = ['MenuSearchService'];
-function NarrowItDownController(MenuSearchService) {
+NarrowItDownController.$inject = ['MenuSearchService', '$rootScope'];
+function NarrowItDownController(MenuSearchService, $rootScope) {
   var list = this;
   list.searchTerm = "";
   list.errorMessage = "";
+  list.found = [];
 
   list.getSearchResult = function (searchTerm) {
     if (searchTerm) {
       var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
 
+			$rootScope.$broadcast('itemsearching:processing', {on: true});
       promise.then(function (result) {
         // console.log("search Term is: ", list.searchTerm);
         // console.log("search result is: ", result);
@@ -45,11 +68,18 @@ function NarrowItDownController(MenuSearchService) {
           list.errorMessage = "";
         } else {
           list.errorMessage = "Nothing found";
+					list.found = [];
         }
+      })
+      .catch(function (result) {
+        console.log("result: ", result);
+      })
+      .finally(function () {
+        $rootScope.$broadcast('itemsearching:processing', {on: false});
       });
     } else {
       list.errorMessage = "Nothing found";
-      list.found = "";
+			list.found = [];
     }
 
   };

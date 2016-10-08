@@ -14,7 +14,7 @@
 		<input type="text" ng-model="list.itemName" placeholder="item name">
 		<input type="text" ng-model="list.itemQuantity" placeholder="quantity">
 		<button ng-click="list.addItem();">Add Item</button>
-		<span>{{list.lastRemoved}}</span>
+		<span class="ng-cloak">{{list.lastRemoved}}</span>
 		<shopping-list
 			items="list.items"
 			title="{{list.title}}"
