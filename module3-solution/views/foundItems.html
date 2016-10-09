@@ -1,7 +1,23 @@
-<ul>
-  <li ng-repeat="item in found.items">
-    {{ item.name }}
-    <button class="btn btn-warning btn-xs" ng-click="found.onRemove({index: $index});">Remove Item</button>
-  </li>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in found.items">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" ng-click="found.remove($index);">Remove Item</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <div ng-if="found.errorMessage" class="error">{{found.errorMessage}}</div>
-</ul>
+</div>
