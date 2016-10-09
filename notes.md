@@ -104,7 +104,7 @@ function Ctrl($scope, customFilter) {
 ### Digest Cycle
 Running digest loops until all watchers report that nothing has changed.
 
-Dirty checking: if one property in the watchers has changed, the digest loop will be fired twice, one is to check which property is changed, the other is to make sure nothing is changed(Because sometimes one property change may cause another property change). 
+Dirty checking: if one property in the watchers has changed, the digest loop will be fired twice, one is to check which property is changed, the other is to make sure nothing is changed(Because sometimes one property change may cause another property change).
 
 Several ways to set up watchers:
 
@@ -207,3 +207,20 @@ Object which can be passed around or returned that holds references to the outco
 
 ### Components
 Components only control their own view and data, it never modify data or DOM outside their own scope(Modifying creates side-effects that lead to chaos). Therefore, Angular components always use isolate scope.
+
+Components are like restricted version of directives.
+
+### Publish-subscribe design pattern
+Publishers send messages to subscribers on a common channel.
+
+- Publishers:
+    - Mark messages with a classification
+    - Don't know subscribers of if there are any
+- Subscribers:
+    - Sign up to listen for messages with a particular classification
+    - Don't know publishers or if there are any
+
+**In Angular, the common channel is scope. Messages are events that can hold data.**
+
+### `$rootScope.$emit` versus `$rootScope.$broadcast`
+The $rootScope Object has the identical $emit, $broadcast, $on methods, but they work slightly differently to how $scope implements them. As $rootScope has no $parent, using an $emit would be pointless, right? Nope, instead, $rootScope.$emit will fire an event for all $rootScope.$on listeners only. The interesting part is that $rootScope.$broadcast will notify all $rootScope.$on as well as $scope.$on listeners, subtle but very important difference if you want to avoid issues in your application.
