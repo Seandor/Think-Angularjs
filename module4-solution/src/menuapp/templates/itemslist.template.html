@@ -1,0 +1,19 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Short Name</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in $ctrl.items">
+        <td>{{item.id}}</td>
+        <td>{{item.short_name}}</td>
+        <td>{{item.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <div ng-if="found.errorMessage" class="error">{{found.errorMessage}}</div> -->
+</div>
