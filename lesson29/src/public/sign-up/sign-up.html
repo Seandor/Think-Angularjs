@@ -1,0 +1,61 @@
+<div class="container">
+  <fieldset class="signup">
+    <legend class="signup-info">Sign up for our newsletter!</legend>
+    <form class="form-horizontal" name="regForm" novalidate>
+
+      <div class="form-group">
+        <div class="col-md-6">
+          <input class="form-control" type="text" name="firstname" placeholder="First name" ng-model="reg.user.firstname"
+          required minlength="4" ng-maxlength="10">
+          <span ng-if="(regForm.firstname.$error.minlength || regForm.firstname.$error.required) && regForm.firstname.$touched">
+            Username must be at least 4 characters long
+          </span>
+          <span ng-if="regForm.firstname.$error.maxlength && regForm.firstname.$touched">
+            Username must no longer than 10 characters
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-6">
+          <input class="form-control" type="text" name="lastname" placeholder="Last name" ng-model="reg.user.lastname"
+          required minlength="4" ng-maxlength="10">
+          <span ng-if="(regForm.lastname.$error.minlength || regForm.lastname.$error.required) && regForm.lastname.$touched">
+            Username must be at least 4 characters long
+          </span>
+          <span ng-if="regForm.lastname.$error.maxlength && regForm.lastname.$touched">
+            Username must no longer than 10 characters
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-6">
+          <input class="form-control" type="email" name="email" placeholder="Email" ng-model="reg.user.email" required>
+          <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+            Must be a valid Email address: handle@domain format
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-6">
+          <input class="form-control" type="text" name="phone" placeholder="Phone number"
+            ng-model="reg.user.phone"
+            pattern="(\d{3})-(\d{3})-(\d{4})">
+          <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </span>
+        </div>
+      </div>
+
+      <button class="btn btn-success"
+        ng-disabled="regForm.$invalid"
+        ng-click="reg.submit()">Submit</button>
+
+      <!-- <div style="margin-top: 10px;">
+        Form valid? {{ regForm.$valid }}
+      </div> -->
+    </form>
+  </fieldset>
+</div>
