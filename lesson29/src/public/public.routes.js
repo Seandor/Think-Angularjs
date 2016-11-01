@@ -37,9 +37,17 @@ function routeConfig($stateProvider) {
         }]
       }
     })
-    .state('public.signup', {
-      url: '/signup',
-      templateUrl: 'src/public/sign-up/sign-up.html'
+    .state('public.register', {
+      url: '/register',
+      templateUrl: 'src/public/register/register.html',
+      controller: 'RegisterController',
+      controllerAs: 'regCtrl'
+    })
+    .state('public.userspace', {
+      url: '/userspace',
+      templateUrl: 'src/public/user-space/user-space.html',
+      controller: 'UserspaceController',
+      controllerAs: 'userCtrl'
     });
 }
 

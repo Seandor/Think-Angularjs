@@ -45,7 +45,7 @@
 				<div id="collapsable-nav" class="collapse navbar-collapse">
 					<ul id="nav-list" class="nav navbar-nav navbar-right">
 						<li id="navHomeButton" class="visible-xs">
-							<a href="index.html">
+							<a ui-sref="public.home">
 								<span class="glyphicon glyphicon-home"></span>Home</a>
 						</li>
 						<li id="navMenuButton" ui-sref-active="active">
@@ -53,11 +53,11 @@
 								<span class="glyphicon glyphicon-cutlery"></span><br class="hidden-xs"> Menu</a>
 						</li>
 						<li>
-							<a href="#">
+							<a data-ui-sref="public.userspace">
 								<span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs"> My Info</a>
 						</li>
 						<li>
-							<a ui-sref="public.signup">
+							<a ui-sref="public.register">
 								<span class="glyphicon glyphicon-certificate"></span><br class="hidden-xs"> Sign Up</a>
 						</li>
 						<li id="phone" class="hidden-xs">
@@ -125,6 +125,7 @@
 	<script src="src/common/loading/loading.component.js"></script>
 	<script src="src/common/loading/loading.interceptor.js"></script>
 	<script src="src/common/menu.service.js"></script>
+	<script src="src/common/registration.service.js"></script>
 
 	<!-- Public Module -->
 	<script src="src/public/public.module.js"></script>
@@ -133,6 +134,8 @@
 	<script src="src/public/menu-category/menu-category.component.js"></script>
 	<script src="src/public/menu-items/menu-items.controller.js"></script>
 	<script src="src/public/menu-item/menu-item.component.js"></script>
+	<script src="src/public/register/register.controller.js"></script>
+	<script src="src/public/user-space/user-space.controller.js"></script>
 
 	<!-- Admin Site -->
 	<!-- <script src=""></script>

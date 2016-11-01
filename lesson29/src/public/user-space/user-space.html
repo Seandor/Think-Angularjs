@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="user-info" ng-if="userCtrl.registered">
+    <h3>User Information</h3>
+    <p>First Name: {{userCtrl.userInfo.firstname}}</p>
+    <p>Last Name: {{userCtrl.userInfo.lastname}}</p>
+    <p>Email Address: {{userCtrl.userInfo.email}}</p>
+    <p>Phone Num: {{userCtrl.userInfo.phone}}</p>
+    <p>Favorite Dish:</p>
+    <menu-item menu-item="userCtrl.userInfo.favoriteDish"></menu-item>
+  </div>
+  <span ng-if="!userCtrl.registered">Not Signed up Yet! <a ui-sref="public.register">Sign up Now!</a></span>
+</div>
