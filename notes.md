@@ -56,14 +56,18 @@ The framework does this magic.
 Angular正是利用定制的HTML属性实现了那些绑定。详见例子。
 
 ### Dependency Injection
-Design pattern that implements Inversion of Control.
 
-DI in Angular needs to be minification proof.
+#### Inversion of control
+假设我们现在有2个模块，其中一个模块依赖于另一个模块，我们可以将依赖模块将参数传递至该模块，并让控制系统去做依赖模块的初始化工作。这样就能够避免因为依赖模块的更改，不断修改该模块的依赖部分。
+
+Dependency Injection is a design pattern that implements Inversion of Control.
+
+DI in Angular needs to be minification proof. 压缩JS的时候需要保护这些依赖，不能被重名名了。
 
 2 methods:
 
-- Inline array with function as last element
-- Attach $inject property to the function object
+- Inline array with function as last element (Angular 会解析参数列表，再初始化Dependencies)
+- Attach $inject property to the function object (更优雅更具可读性)
 
 ### week1 assignment
 这是一个悲伤的故事。我只得了80分。完完全全体现出了我的草率和无知以及没有耐心。
